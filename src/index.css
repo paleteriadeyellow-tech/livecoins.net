@@ -1,0 +1,197 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply font-sans antialiased text-white bg-live-bg;
+  }
+
+  ::selection {
+    @apply bg-live-cyan/30 text-white;
+  }
+}
+
+@layer components {
+  .section-pad {
+    @apply px-4 sm:px-6 lg:px-8 py-20 sm:py-28;
+  }
+
+  .section-title {
+    @apply font-display text-3xl sm:text-4xl lg:text-5xl font-bold tracking-wide;
+  }
+
+  .section-sub {
+    @apply mt-4 text-lg sm:text-xl text-white/60 max-w-2xl;
+  }
+
+  .glass-card {
+    @apply rounded-2xl border border-live-border/60 bg-live-card/80 backdrop-blur-md;
+  }
+
+  .neon-text {
+    @apply bg-gradient-to-r from-live-cyan to-live-pink bg-clip-text text-transparent;
+  }
+
+  .btn-glow {
+    @apply relative inline-flex items-center justify-center gap-2 rounded-xl px-6 py-3.5 font-display font-semibold tracking-wider uppercase text-sm transition-all duration-300;
+    @apply bg-gradient-to-r from-live-cyan to-live-pink text-[#04121a];
+    @apply hover:shadow-glow hover:scale-[1.03] active:scale-[0.98];
+  }
+
+  .btn-glow::before {
+    content: '';
+    @apply absolute inset-0 rounded-xl opacity-0 transition-opacity duration-300;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.25), transparent);
+    background-size: 200% 100%;
+  }
+
+  .btn-glow:hover::before {
+    @apply opacity-100 animate-shimmer;
+  }
+
+  .btn-outline {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl border border-live-cyan/40 px-6 py-3.5 font-display font-semibold tracking-wider uppercase text-sm text-live-cyan transition-all duration-300;
+    @apply hover:border-live-cyan hover:bg-live-cyan/10 hover:shadow-glow;
+  }
+
+  .game-card {
+    @apply glass-card relative overflow-hidden p-5 transition-all duration-300;
+    @apply hover:border-live-cyan/50 hover:-translate-y-1 hover:shadow-glow;
+  }
+
+  .game-card::after {
+    content: '';
+    @apply absolute inset-0 opacity-0 transition-opacity duration-300 pointer-events-none;
+    background: linear-gradient(135deg, rgba(37, 244, 238, 0.08), rgba(254, 44, 85, 0.08));
+  }
+
+  .game-card:hover::after {
+    @apply opacity-100;
+  }
+
+  /* Grid de juegos — igual que el panel Livecoins */
+  .juegos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 16px;
+  }
+
+  @media (min-width: 1280px) {
+    .juegos-grid {
+      grid-template-columns: repeat(8, minmax(0, 1fr));
+    }
+  }
+
+  .juego-card {
+    position: relative;
+    aspect-ratio: 3 / 4.2;
+    overflow: hidden;
+    padding: 0;
+    border-radius: 14px;
+    background: #0d1018;
+    border: 1px solid rgba(124, 77, 255, 0.42);
+    transition: transform 0.16s ease, border-color 0.16s ease, box-shadow 0.16s ease;
+    box-shadow:
+      0 0 0 1px rgba(124, 77, 255, 0.18),
+      0 0 14px rgba(124, 77, 255, 0.28),
+      0 0 28px rgba(124, 77, 255, 0.12),
+      inset 0 0 18px rgba(124, 77, 255, 0.08);
+  }
+
+  .juego-card:hover {
+    transform: translateY(-3px);
+    border-color: rgba(167, 139, 250, 0.85);
+    box-shadow:
+      0 0 0 1px rgba(167, 139, 250, 0.45),
+      0 0 22px rgba(124, 77, 255, 0.5),
+      0 0 40px rgba(124, 77, 255, 0.28),
+      0 14px 34px rgba(0, 0, 0, 0.45),
+      inset 0 0 22px rgba(124, 77, 255, 0.14);
+  }
+
+  .juego-card picture {
+    position: absolute;
+    inset: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+
+  .juego-card-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top center;
+    display: block;
+  }
+
+  .juego-card[data-game='repo'] .juego-card-img {
+    object-fit: cover;
+    object-position: center 42%;
+  }
+
+  .juego-version {
+    position: absolute;
+    left: auto;
+    right: 8px;
+    bottom: 8px;
+    z-index: 3;
+    padding: 4px 9px;
+    border-radius: 6px;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0;
+    text-transform: none;
+    color: #fff;
+    background: rgba(22, 32, 14, 0.72);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
+    backdrop-filter: blur(3px);
+  }
+
+  .overlay-preview {
+    @apply relative aspect-[3/4] rounded-xl overflow-hidden border border-live-border/50;
+  }
+
+  .scanline::after {
+    content: '';
+    @apply absolute inset-0 pointer-events-none opacity-[0.04];
+    background: repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(0, 0, 0, 0.5) 2px,
+      rgba(0, 0, 0, 0.5) 4px
+    );
+  }
+
+  /* Vista previa overlay — estilo ovpro-preview del panel Livecoins */
+  .ov-iframe-label {
+    @apply text-[11px] font-extrabold tracking-[0.08em] text-white/50 mb-2 uppercase;
+  }
+
+  .ov-iframe-preview {
+    @apply relative w-full overflow-hidden rounded-[14px] border border-white/[0.08];
+    background:
+      radial-gradient(80% 60% at 50% 0%, rgba(37, 244, 238, 0.06), transparent 60%),
+      linear-gradient(180deg, #060b13, #0a121d);
+  }
+
+  .ov-iframe-preview iframe {
+    @apply w-full h-full border-0 block;
+    background: transparent;
+  }
+
+  .ov-iframe-skeleton {
+    @apply absolute inset-0 animate-pulse;
+    background: linear-gradient(110deg, #0a121d 0%, #121a28 45%, #0a121d 90%);
+    background-size: 200% 100%;
+  }
+}

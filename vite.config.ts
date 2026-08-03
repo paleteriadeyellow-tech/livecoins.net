@@ -3,7 +3,7 @@ import react from '@vitejs/plugin-react';
 
 export default defineConfig({
   plugins: [react()],
-  // GitHub Pages: https://paleteriadeyellow-tech.github.io/livecoins.net/
-  // Dominio propio: build sin GITHUB_PAGES (base '/').
-  base: process.env.GITHUB_PAGES === 'true' ? '/livecoins.net/' : '/',
+  // Dominio custom https://livecoins.net → base en raíz.
+  // No usar /livecoins.net/ o los assets fallan en el dominio propio.
+  base: '/',
 });

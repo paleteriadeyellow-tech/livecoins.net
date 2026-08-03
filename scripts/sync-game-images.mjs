@@ -29,6 +29,11 @@ const files = [
   'l4d2-card.png',
   'ctr-card.jpg', 'ctr-card.webp',
   'metalslug.png',
+  'smw-card.jpg',
+  'gtavkoth-card.png',
+  'gtavchaos-card.png',
+  'gtavchiliad-card.png',
+  'unturned-card.png',
 ];
 
 const gdashFiles = ['gdash-card.jpg', 'gdash-card.webp'];

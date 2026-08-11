@@ -1,11 +1,11 @@
 export const WHATSAPP_NUMBER = '522202079074';
 export const PANEL_URL = 'https://livecoins.onrender.com';
 export const PREMIUM_PRICE = '$12 USD';
-export const APP_VERSION = '1.6.15';
+export const APP_VERSION = '1.6.44';
 export const DOWNLOAD_URL =
-  'https://github.com/Converse1995/llivecoin/releases/download/livecoins/Livecoins.Setup.1.6.15.exe';
+  'https://github.com/paleteriadeyellow-tech/exe/releases/download/exe/Livecoins.Setup.1.6.44.exe';
 export const DOWNLOAD_SIZE = '~943 MB';
-export const RELEASES_URL = 'https://github.com/Converse1995/llivecoin/releases';
+export const RELEASES_URL = 'https://github.com/paleteriadeyellow-tech/exe/releases';
 
 export const TUTORIAL_VIDEO_ID = 'YBLo2J0khbo';
 export const TUTORIAL_VIDEO_START = 15;

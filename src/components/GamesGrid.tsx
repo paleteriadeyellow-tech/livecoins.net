@@ -52,7 +52,7 @@ export function GamesGrid() {
         </div>
 
         <p className="text-center mt-10 text-sm text-white/40">
-          Los juegos con badge <span className="text-live-gold font-semibold">Premium</span> se desbloquean con el plan de $12 USD/mes.
+          Los juegos con badge <span className="text-live-gold font-semibold">Premium</span> se desbloquean con el plan de $17 USD/mes.
         </p>
       </div>
     </section>

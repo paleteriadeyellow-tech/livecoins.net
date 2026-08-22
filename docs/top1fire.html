@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="referrer" content="no-referrer">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Overlay — Top 1 Donador Fuego</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Bangers&family=Bebas+Neue&family=Bungee&family=Cinzel:wght@700;900&family=Fredoka:wght@600;700&family=Inter:wght@700;800&family=Lilita+One&family=Luckiest+Guy&family=Montserrat:wght@700;800;900&family=Orbitron:wght@700;800;900&family=Oswald:wght@600;700&family=Poppins:wght@700;800;900&family=Rubik:wght@700;800;900&family=Titan+One&display=swap');
+
+* { box-sizing: border-box; }
+html, body {
+    background: transparent;
+    margin: 0;
+    overflow: hidden;
+    font-family: 'Inter', system-ui, sans-serif;
+    width: 850px;
+    height: 520px;
+}
+html.embed, html.embed body { width: 100%; height: 100%; }
+html.embed body { display: flex; align-items: center; justify-content: center; }
+html.embed .stage { transform: scale(var(--fit, 1)); transform-origin: center center; }
+
+:root {
+    --ng1: #fff8f0;
+    --ng2: #ffb347;
+    --ng3: #ff4500;
+    --vc: #ffe8d6;
+    --vs: rgba(42, 10, 0, 0.9);
+    --tf-font-stack: 'Inter', system-ui, sans-serif;
+    --tf-name-font-stack: 'Cinzel', 'Inter', serif;
+}
+
+.stage {
+    width: 850px;
+    height: 520px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 20px 20px;
+}
+
+.top-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 320px;
+}
+
+/* Marco dorado MVP: foto DETRÁS del PNG, en el hueco del círculo */
+.frame-hero {
+    position: relative;
+    width: 300px;
+    height: 300px;
+    filter: drop-shadow(0 10px 22px rgba(0,0,0,.45)) drop-shadow(0 0 18px rgba(255, 180, 40, 0.35));
+    animation: frame-float 3.2s ease-in-out infinite;
+    will-change: transform;
+}
+
+@keyframes frame-float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+body.no-fx .frame-hero {
+    filter: drop-shadow(0 8px 16px rgba(0,0,0,.4));
+    animation: none;
+}
+
+.avatar-hole {
+    position: absolute;
+    left: 49.85%;
+    top: 50.68%;
+    width: 38.48%;
+    height: 35.45%;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    overflow: hidden;
+    z-index: 1;
+    background: #111;
+    -webkit-clip-path: ellipse(50% 50% at 50% 50%);
+    clip-path: ellipse(50% 50% at 50% 50%);
+}
+
+.avatar-hole img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center center;
+    display: block;
+    border: 0;
+    border-radius: 50%;
+}
+
+.frame-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: fill;
+    display: block;
+    z-index: 2;
+    pointer-events: none;
+    user-select: none;
+}
+
+.nombre {
+    margin-top: 6px;
+    font-family: var(--tf-name-font-stack, 'Cinzel', 'Inter', serif);
+    font-weight: 900;
+    font-size: 17px;
+    letter-spacing: 0.04em;
+    text-align: center;
+    max-width: 280px;
+    line-height: 1.2;
+    background: linear-gradient(180deg, var(--ng1) 0%, var(--ng2) 45%, var(--ng3) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 2px 3px rgba(0,0,0,0.95)) drop-shadow(0 0 12px rgba(255, 100, 0, 0.45));
+    word-break: break-word;
+}
+
+.monedas {
+    margin-top: 6px;
+    color: var(--vc);
+    font-family: var(--tf-font-stack, 'Inter', system-ui, sans-serif);
+    font-weight: 800;
+    font-size: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    flex-wrap: wrap;
+    text-shadow: 0 2px 0 var(--vs), 0 2px 6px rgba(0,0,0,0.9), 0 0 14px rgba(255, 120, 40, 0.35);
+}
+
+.moneda {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+}
+</style>
+</head>
+<body>
+
+<div class="stage">
+    <div class="top-wrap">
+        <div class="frame-hero">
+            <div class="avatar-hole">
+                <img id="avatar" class="avatar" alt="">
+            </div>
+            <img class="frame-img" src="/overlays/marco-top1fire.png" alt="" draggable="false">
+        </div>
+
+        <div class="nombre" id="nombre">Esperando...</div>
+        <div class="monedas" id="monedas"><span id="monedas-inner"></span></div>
+    </div>
+</div>
+
+<script>
+(function () {
+  const params = new URLSearchParams(location.search);
+  const isEmbed = params.get('embed') === '1';
+  const DEFAULT_PIC = 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png';
+  const PREVIEW_PIC = 'https://randomuser.me/api/portraits/men/32.jpg';
+  const FONTS = { luckiest: "'Luckiest Guy', system-ui, sans-serif", bangers: "'Bangers', system-ui, sans-serif", lilita: "'Lilita One', system-ui, sans-serif", titan: "'Titan One', system-ui, sans-serif", fredoka: "'Fredoka', system-ui, sans-serif", bungee: "'Bungee', system-ui, sans-serif", rubik: "'Rubik', system-ui, sans-serif", oswald: "'Oswald', system-ui, sans-serif", bebas: "'Bebas Neue', Impact, sans-serif", montserrat: "'Montserrat', system-ui, sans-serif", poppins: "'Poppins', system-ui, sans-serif", orbitron: "'Orbitron', system-ui, sans-serif", inter: "'Inter', system-ui, sans-serif", system: "system-ui, sans-serif" };
+  const COIN = '#ffd700';
+
+  let cfg = {
+    coinLabel: '', font: 'inter', showFx: true, resetPeriod: 'live',
+  };
+  let topData = null;
+  let previewMode = false;
+
+  const $ = (id) => document.getElementById(id);
+
+  function applyStyle() {
+    const stack = FONTS[cfg.font] || FONTS.inter;
+    document.documentElement.style.setProperty('--tf-font-stack', stack);
+    document.documentElement.style.setProperty('--tf-name-font-stack', stack);
+    document.body.classList.toggle('no-fx', cfg.showFx === false);
+  }
+
+  function coinSvg() {
+    return '<svg class="moneda" viewBox="0 0 24 24" aria-hidden="true">' +
+      '<circle cx="12" cy="12" r="11" fill="' + COIN + '"/>' +
+      '<circle cx="12" cy="12" r="5" fill="none" stroke="#fff" stroke-width="2.5"/>' +
+      '</svg>';
+  }
+
+  function render() {
+    const label = (cfg.coinLabel || '').trim();
+    const suffix = label ? ' ' + label : '';
+    const inner = $('monedas-inner');
+    const img = $('avatar');
+    const top = previewMode
+      ? { nickname: 'Top Preview', profilePictureUrl: PREVIEW_PIC, coins: 9999 }
+      : topData;
+
+    if (!top) {
+      $('nombre').textContent = 'Esperando...';
+      inner.innerHTML = coinSvg() + ' <span>0' + suffix + '</span>';
+      img.onerror = null;
+      img.src = DEFAULT_PIC;
+      return;
+    }
+    $('nombre').textContent = (top.nickname || 'Usuario').replace(/^@+/, '');
+    img.onerror = function () { this.onerror = null; this.src = DEFAULT_PIC; };
+    img.src = top.profilePictureUrl || top.photo || DEFAULT_PIC;
+    inner.innerHTML = coinSvg() + ' <span>' + (top.coins || 0).toLocaleString('es-ES') + suffix + '</span>';
+  }
+
+  function applyTop1Fire(payload) {
+    if (previewMode) return;
+    topData = payload && payload.top ? payload.top : null;
+    render();
+  }
+
+  function runTest() {
+    previewMode = true;
+    render();
+  }
+  function resetTop() {
+    previewMode = false;
+    topData = null;
+    render();
+  }
+
+  let ws, rt;
+  function connectWS() {
+    const proto = location.protocol === 'https:' ? 'wss' : 'ws';
+    ws = new WebSocket(`${proto}://${location.host}/ws${location.search}`);
+    ws.onopen = () => clearTimeout(rt);
+    ws.onclose = () => { rt = setTimeout(connectWS, 1500); };
+    ws.onmessage = (ev) => {
+      let m; try { m = JSON.parse(ev.data); } catch { return; }
+      if (m.type === 'settings') {
+        if (m.payload && m.payload.top1fire) {
+          cfg = Object.assign(cfg, m.payload.top1fire);
+          applyStyle();
+          render();
+        }
+      } else if (m.type === 'top1fire') {
+        applyTop1Fire(m.payload);
+      } else if (m.type === 'top1fireTest') {
+        if (!isEmbed) runTest();
+      } else if (m.type === 'top1fireReset') {
+        if (!isEmbed && cfg.resetPeriod !== 'week' && cfg.resetPeriod !== 'month') resetTop();
+      }
+    };
+  }
+
+  window.addEventListener('message', (e) => {
+    const d = e.data;
+    if (!d || d.kind !== 'top1fire') return;
+    if (d.type === 'config') { cfg = Object.assign(cfg, d.config); applyStyle(); render(); }
+    else if (d.type === 'test') runTest();
+    else if (d.type === 'reset') { previewMode = false; isEmbed ? runTest() : resetTop(); }
+  });
+
+  if (isEmbed) {
+    document.documentElement.classList.add('embed');
+    const fit = () => document.documentElement.style.setProperty('--fit', Math.min(window.innerWidth / 850, window.innerHeight / 520));
+    fit();
+    window.addEventListener('resize', fit);
+  }
+
+  applyStyle();
+  if (isEmbed) runTest(); else render();
+  connectWS();
+})();
+</script>
+  <script src="/js/overlay-keepalive.js"></script>
+</body>
+</html>

@@ -1,5 +1,4 @@
 export const WHATSAPP_NUMBER = '522202079074';
-export const PANEL_URL = 'https://livecoins.onrender.com';
 export const PREMIUM_PRICE = '$17 USD';
 export const APP_VERSION = '1.6.53';
 export const DOWNLOAD_URL =
@@ -23,16 +22,13 @@ export function tutorialEmbedUrl(autoplay = false) {
 }
 
 export function overlayEmbedUrl(embedPath: string, urlParams?: Record<string, string>) {
-  const base = PANEL_URL.replace(/\/$/, '');
   const path = embedPath.startsWith('/') ? embedPath : `/${embedPath}`;
-  const url = new URL(path, base);
-  url.searchParams.set('embed', '1');
+  const q = new URLSearchParams();
+  q.set('embed', '1');
   if (urlParams) {
-    for (const [key, val] of Object.entries(urlParams)) {
-      url.searchParams.set(key, val);
-    }
+    for (const [key, val] of Object.entries(urlParams)) q.set(key, val);
   }
-  return url.toString();
+  return `${path}?${q.toString()}`;
 }
 
 export function whatsappBuyUrl(username = '') {

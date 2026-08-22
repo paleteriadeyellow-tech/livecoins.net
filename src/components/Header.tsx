@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Download, Menu, X } from 'lucide-react';
-import { DOWNLOAD_URL, PANEL_URL, whatsappBuyUrl } from '../data/content';
+import { DOWNLOAD_URL, whatsappBuyUrl } from '../data/content';
 import { Logo } from './Logo';
 
 const links = [
@@ -81,9 +81,6 @@ export function Header() {
             <a href={DOWNLOAD_URL} className="btn-outline mt-2 justify-center gap-2">
               <Download size={18} />
               Descargar App
-            </a>
-            <a href={PANEL_URL} target="_blank" rel="noopener noreferrer" className="btn-outline mt-2 justify-center">
-              Panel web
             </a>
             <a href={whatsappBuyUrl()} target="_blank" rel="noopener noreferrer" className="btn-glow mt-2 justify-center">
               Comprar Premium

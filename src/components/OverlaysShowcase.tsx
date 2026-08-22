@@ -11,7 +11,7 @@ export function OverlaysShowcase() {
             Producción <span className="neon-text">nivel pro</span>
           </h2>
           <p className="section-sub mx-auto">
-            Vista previa en vivo con animación — igual que al pulsar <strong className="text-white">Testear</strong> en el panel.
+            Vista previa de ejemplo (sin panel web). En la App PC se ven igual al pulsar <strong className="text-white">Testear</strong>.
             Los jarrón, perrito, vaquita y marranito corren en bucle automático.
           </p>
         </div>

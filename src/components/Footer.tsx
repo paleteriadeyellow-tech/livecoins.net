@@ -1,4 +1,4 @@
-import { APP_VERSION, DOWNLOAD_URL, PANEL_URL, RELEASES_URL } from '../data/content';
+import { APP_VERSION, DOWNLOAD_URL, RELEASES_URL } from '../data/content';
 import { Logo } from './Logo';
 
 export function Footer() {
@@ -16,9 +16,6 @@ export function Footer() {
             <a href="#planes" className="hover:text-live-cyan transition-colors">Planes</a>
             <a href={DOWNLOAD_URL} className="hover:text-live-gold transition-colors">Instalador .exe</a>
             <a href={RELEASES_URL} target="_blank" rel="noopener noreferrer" className="hover:text-live-cyan transition-colors">GitHub</a>
-            <a href={PANEL_URL} target="_blank" rel="noopener noreferrer" className="hover:text-live-cyan transition-colors">
-              Panel web
-            </a>
           </nav>
 
           <p className="text-xs text-white/30 text-center md:text-right">

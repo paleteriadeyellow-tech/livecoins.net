@@ -1,4 +1,4 @@
-import { APP_VERSION, DOWNLOAD_SIZE, DOWNLOAD_URL, PANEL_URL, downloadSteps } from '../data/content';
+import { APP_VERSION, DOWNLOAD_SIZE, DOWNLOAD_URL, downloadSteps } from '../data/content';
 import { Download } from 'lucide-react';
 
 export function DownloadSection() {
@@ -22,9 +22,6 @@ export function DownloadSection() {
               <a href={DOWNLOAD_URL} className="btn-glow text-base px-8 py-4 !from-live-gold !to-live-gold-dark !text-[#2a1c00] hover:!shadow-glow-gold">
                 <Download size={20} />
                 Descargar para Windows
-              </a>
-              <a href={PANEL_URL} target="_blank" rel="noopener noreferrer" className="btn-outline text-base px-6 py-4">
-                Versión web
               </a>
             </div>
 

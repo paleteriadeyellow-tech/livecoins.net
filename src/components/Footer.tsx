@@ -12,7 +12,6 @@ export function Footer() {
             <a href="#descargar" className="hover:text-live-gold transition-colors">Descargar v{APP_VERSION}</a>
             <a href="#inicio" className="hover:text-live-cyan transition-colors">Inicio</a>
             <a href="#juegos" className="hover:text-live-cyan transition-colors">Juegos</a>
-            <a href="#overlays" className="hover:text-live-cyan transition-colors">Overlays</a>
             <a href="#planes" className="hover:text-live-cyan transition-colors">Planes</a>
             <a href={DOWNLOAD_URL} className="hover:text-live-gold transition-colors">Instalador .exe</a>
             <a href={RELEASES_URL} target="_blank" rel="noopener noreferrer" className="hover:text-live-cyan transition-colors">GitHub</a>

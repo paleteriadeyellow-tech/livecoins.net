@@ -8,7 +8,6 @@ const links = [
   { href: '#descargar', label: 'Descargar' },
   { href: '#app', label: 'App' },
   { href: '#juegos', label: 'Juegos' },
-  { href: '#overlays', label: 'Overlays' },
   { href: '#planes', label: 'Planes' },
 ];
 

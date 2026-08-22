@@ -1,5 +1,4 @@
 import { APP_VERSION, DOWNLOAD_URL, screenshots, stats, whatsappBuyUrl } from '../data/content';
-import { OverlayIframePreview } from './OverlayIframePreview';
 
 function asset(path: string) {
   const base = import.meta.env.BASE_URL || '/';
@@ -62,16 +61,9 @@ export function Hero() {
               />
             </div>
 
-            <div className="absolute -bottom-6 -left-4 sm:-left-6 glass-card p-3 shadow-glow max-w-[200px] hidden sm:block">
-              <OverlayIframePreview
-                embedPath="/perrito.html"
-                urlParams={{ preview: '1' }}
-                title="Perrito"
-                height={140}
-                showLabel={false}
-              />
-              <div className="text-xs text-white/50 uppercase mt-2">Vista previa</div>
-              <div className="font-display text-live-cyan font-bold text-sm">Perrito</div>
+            <div className="absolute -bottom-6 -left-4 sm:-left-6 glass-card px-4 py-3 shadow-glow hidden sm:block">
+              <div className="text-xs text-white/50 uppercase">Overlays OBS</div>
+              <div className="font-display text-live-cyan font-bold text-sm">En la App PC</div>
             </div>
 
             <div className="absolute -top-4 -right-4 glass-card px-4 py-3 shadow-glow-gold">

@@ -1,14 +1,8 @@
 export const WHATSAPP_NUMBER = '522202079074';
 export const PREMIUM_PRICE = '$17 USD';
-<<<<<<< HEAD
 export const APP_VERSION = '1.6.61';
 export const DOWNLOAD_URL =
   'https://github.com/paleteriadeyellow-tech/exe/releases/download/world/Livecoins.Setup.1.6.61.exe';
-=======
-export const APP_VERSION = '1.6.56';
-export const DOWNLOAD_URL =
-  'https://github.com/paleteriadeyellow-tech/exe/releases/download/world/Livecoins.Setup.1.6.56.exe';
->>>>>>> 985c27ad4d59c48c80f0b6e40969609ca5775aaa
 export const DOWNLOAD_SIZE = '~943 MB';
 export const RELEASES_URL = 'https://github.com/paleteriadeyellow-tech/exe/releases';
 

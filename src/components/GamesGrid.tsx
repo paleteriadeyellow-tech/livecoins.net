@@ -10,7 +10,7 @@ export function GamesGrid() {
             Tu chat <span className="neon-text">juega contigo</span>
           </h2>
           <p className="section-sub mx-auto">
-            Minecraft, Mario, PvZ, GTA V, Roblox y más. El mismo catálogo de la app: un regalo entra, el juego responde.
+            Minecraft, Mario Kart, Flappy, PvZ Fusion, GTA V y más. El mismo catálogo de la app: un regalo entra, el juego responde.
           </p>
         </div>
 

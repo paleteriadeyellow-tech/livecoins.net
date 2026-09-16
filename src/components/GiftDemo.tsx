@@ -89,7 +89,7 @@ export function GiftDemo() {
 
         <div className="mt-12 grid sm:grid-cols-3 gap-4">
           {[
-            { k: '19+', v: 'Minijuegos listos para el chat' },
+            { k: '28', v: 'Minijuegos listos para el chat' },
             { k: '40+', v: 'Overlays 3:4 para OBS / Live Studio' },
             { k: '1 toque', v: 'Regalo → spawn, boss o alerta' },
           ].map((item) => (

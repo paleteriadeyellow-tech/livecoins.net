@@ -44,7 +44,7 @@ export const screenshots = {
 
 export const stats = [
   { value: '40+', label: 'Overlays para OBS' },
-  { value: '19', label: 'Minijuegos conectados' },
+  { value: '28', label: 'Minijuegos conectados' },
   { value: APP_VERSION, label: 'Versión actual App PC' },
   { value: '3:4', label: 'Formato TikTok LIVE' },
 ];
@@ -129,6 +129,7 @@ export type GameItem = {
 /** Mismo orden y arte que la pestaña Juegos del panel Livecoins */
 export const games: GameItem[] = [
   { id: 'minecraft', name: 'Minecraft', img: '/img/minecraft-card.jpg', webp: '/img/minecraft-card.webp' },
+  { id: 'mcservidor', name: 'Servidor Minecraft', img: '/img/mcservidor-card.png', badge: 'Servidor local' },
   { id: 'mcparkour', name: 'Minecraft Parkour', img: '/img/mcparkour-card.jpg', webp: '/img/mcparkour-card.webp' },
   { id: 'mckoth', name: 'Minecraft KOTH', img: '/img/mckoth-card.jpg', webp: '/img/mckoth-card.webp' },
   { id: 'mcfarm', name: 'Minecraft Farm', img: '/img/mcfarm-card.jpg', webp: '/img/mcfarm-card.webp' },
@@ -141,16 +142,19 @@ export const games: GameItem[] = [
   { id: 'smb3', name: 'Super Mario Bros. 3', img: '/img/smb3-card.png' },
   { id: 'smw', name: 'Super Mario World', img: '/img/smw-card.jpg' },
   { id: 'mari0', name: 'Mari0', img: '/img/mari0-card.png', badge: 'Nueva versión' },
-  { id: 'pvz', name: 'Plants vs Zombies', img: '/img/plantasvszombies-card.jpg', webp: '/img/plantasvszombies-card.webp' },
-  { id: 'pvzhybrid', name: 'PvZ Hybrid', img: '/img/pvzhybrid-card.jpg', webp: '/img/pvzhybrid-card.webp', premium: true },
-  { id: 'repo', name: 'R.E.P.O.', img: '/img/repo-card.jpg', webp: '/img/repo-card.webp', premium: true },
+  { id: 'pvz', name: 'Plants vs Zombies', img: '/img/plantasvszombies-card.jpg', webp: '/img/plantasvszombies-card.webp', badge: 'v2.6' },
+  { id: 'pvzhybrid', name: 'PvZ Pack', img: '/img/pvzhybrid-card.jpg', webp: '/img/pvzhybrid-card.webp', premium: true },
+  { id: 'pvzfusion', name: 'PvZ Fusion', img: '/img/pvzfusion-card.jpg', premium: true },
+  { id: 'repo', name: 'R.E.P.O.', img: '/img/repo-card.jpg', webp: '/img/repo-card.webp', premium: true, badge: 'UPDATE v12.0' },
   { id: 'l4d', name: 'Left 4 Dead 2', img: '/img/l4d2-card.png', premium: true },
   { id: 'gtavkoth', name: 'King of the Hill · GTA V', img: '/img/gtavkoth-card.png', premium: true },
   { id: 'gtavchaos', name: 'GTA V Chaos Mod', img: '/img/gtavchaos-card.png', premium: true },
   { id: 'gtavchiliad', name: 'Monte Chiliad · GTA V', img: '/img/gtavchiliad-card.png', premium: true },
   { id: 'unturned', name: 'Unturned', img: '/img/unturned-card.png', premium: true },
+  { id: 'flappy', name: 'FlappyBird', img: '/img/flappy-card.png' },
+  { id: 'mk64', name: 'Mario Kart 64', img: '/img/mk64-card.png' },
   { id: 'ctr', name: 'Crash Team Racing', img: '/img/ctr-card.jpg', webp: '/img/ctr-card.webp', premium: true },
-  { id: 'mslug', name: 'Metal Slug', img: '/img/metalslug.png' },
+  { id: 'mslug', name: 'Metal Slug', img: '/img/metalslug.png', badge: 'Nueva versión' },
   { id: 'gdash', name: 'Geometry Dash', img: '/img/gdash/gdash-card.jpg', webp: '/img/gdash/gdash-card.webp', premium: true },
 ];
 
@@ -181,7 +185,7 @@ export const planFree = [
 
 export const planPremium = [
   'Todo ilimitado — sin topes',
-  'PvZ Hybrid, R.E.P.O., L4D2, CTR, GD',
+  'PvZ Pack, PvZ Fusion, R.E.P.O., L4D2, CTR, GD',
   '40+ overlays desbloqueados',
   'TTS de TikTok',
   'Perfiles ilimitados',

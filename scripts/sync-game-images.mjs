@@ -1,4 +1,4 @@
-import { copyFile, mkdir } from 'node:fs/promises';
+import { access, copyFile, mkdir } from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -11,6 +11,7 @@ const src2 =
 const src3 =
   process.env.HOKEY_IMG_SRC3 ||
   path.join('C:', 'Users', 'Admin', 'Desktop', 'hokey', 'desktop', 'dist3', 'win-unpacked', 'resources', 'app-server', 'public', 'img');
+const srcPublic = path.join('C:', 'Users', 'Admin', 'Desktop', 'hokey', 'public', 'img');
 
 const files = [
   'minecraft-card.jpg', 'minecraft-card.webp',
@@ -36,22 +37,57 @@ const files = [
   'unturned-card.png',
 ];
 
+const extraFrom3 = [
+  'flappy-card.png',
+  'mcservidor-card.png',
+  'mk64-card.png',
+  'mk64-card.jpg',
+  'pvzfusion-card.jpg',
+];
+
 const gdashFiles = ['gdash-card.jpg', 'gdash-card.webp'];
 
 await mkdir(path.join(dest, 'gdash'), { recursive: true });
 
+async function firstExisting(...candidates) {
+  for (const p of candidates) {
+    try {
+      await access(p);
+      return p;
+    } catch {
+      /* try next */
+    }
+  }
+  return null;
+}
+
 let ok = 0;
-for (const f of files) {
-  const from = path.join(src2, f);
+const onlyExtra = process.argv.includes('--extra');
+
+if (!onlyExtra) {
+  for (const f of files) {
+    const from = path.join(src2, f);
+    await copyFile(from, path.join(dest, f));
+    ok += 1;
+    console.log('OK', f);
+  }
+  for (const f of gdashFiles) {
+    const from = path.join(src3, 'gdash', f);
+    await copyFile(from, path.join(dest, 'gdash', f));
+    ok += 1;
+    console.log('OK gdash/' + f);
+  }
+}
+
+for (const f of extraFrom3) {
+  const from = await firstExisting(path.join(src3, f), path.join(srcPublic, f), path.join(src2, f));
+  if (!from) {
+    console.warn('MISSING', f);
+    continue;
+  }
   await copyFile(from, path.join(dest, f));
   ok += 1;
-  console.log('OK', f);
-}
-for (const f of gdashFiles) {
-  const from = path.join(src3, 'gdash', f);
-  await copyFile(from, path.join(dest, 'gdash', f));
-  ok += 1;
-  console.log('OK gdash/' + f);
+  console.log('OK extra', f);
 }
 
 console.log(`Synced ${ok} images -> ${dest}`);

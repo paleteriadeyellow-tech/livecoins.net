@@ -40,21 +40,21 @@
 
   .featured-games {
     display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 18px 16px;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 10px 8px;
   }
 
   @media (min-width: 640px) {
     .featured-games {
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 22px 18px;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 12px 10px;
     }
   }
 
   @media (min-width: 1024px) {
     .featured-games {
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 24px 20px;
+      grid-template-columns: repeat(7, minmax(0, 1fr));
+      gap: 12px 10px;
     }
   }
 
@@ -62,15 +62,15 @@
     position: relative;
     aspect-ratio: 3 / 4.2;
     overflow: hidden;
-    border-radius: 18px;
+    border-radius: 10px;
     background: #080b12;
-    box-shadow: 0 10px 28px rgba(0, 0, 0, 0.35);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.32);
     transition: transform 0.18s ease, box-shadow 0.18s ease;
   }
 
   .featured-game:hover {
-    transform: translateY(-6px) scale(1.015);
-    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 207, 92, 0.35);
+    transform: translateY(-3px) scale(1.03);
+    box-shadow: 0 10px 22px rgba(0, 0, 0, 0.45), 0 0 0 1px rgba(255, 207, 92, 0.35);
   }
 
   .featured-game-img {

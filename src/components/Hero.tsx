@@ -73,7 +73,7 @@ export function Hero() {
             Descargar App PC
           </a>
           <a href="#demo" className="btn-outline text-base px-8 py-4 bg-black/30 backdrop-blur-sm">
-            Toca un regalo
+            Ver un spawn
           </a>
         </div>
       </div>

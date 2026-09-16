@@ -1,16 +1,5 @@
-import { useState } from 'react';
-import { giftReactions, screenshots } from '../data/content';
-
-function asset(path: string) {
-  const base = import.meta.env.BASE_URL || '/';
-  return `${base}${path.replace(/^\//, '')}`;
-}
-
-const flashClass: Record<(typeof giftReactions)[number]['accent'], string> = {
-  cyan: 'from-live-cyan/50 to-transparent',
-  gold: 'from-live-gold/50 to-transparent',
-  pink: 'from-live-pink/50 to-transparent',
-};
+import { useEffect, useRef, useState } from 'react';
+import { gameImageUrl, giftReactions } from '../data/content';
 
 const btnActive: Record<(typeof giftReactions)[number]['accent'], string> = {
   cyan: 'border-live-cyan bg-live-cyan/15 shadow-glow',
@@ -18,15 +7,63 @@ const btnActive: Record<(typeof giftReactions)[number]['accent'], string> = {
   pink: 'border-live-pink bg-live-pink/15 shadow-glow-pink',
 };
 
-export function GiftDemo() {
-  const [activeId, setActiveId] = useState<(typeof giftReactions)[number]['id']>('leon');
-  const [burst, setBurst] = useState(0);
-  const active = giftReactions.find((g) => g.id === activeId) ?? giftReactions[1];
+const scenes = {
+  rosa: {
+    world: '/img/mcparkour-card.jpg',
+    game: 'Minecraft Parkour',
+    user: '@luna',
+    spawnLabel: 'SPAWN ×3',
+    spawnName: 'Creepers',
+    mobs: [
+      { emoji: '🧟', x: '18%', delay: '0.62s', size: 'text-6xl sm:text-7xl' },
+      { emoji: '🧟', x: '42%', delay: '0.74s', size: 'text-7xl sm:text-8xl' },
+      { emoji: '🧟', x: '66%', delay: '0.86s', size: 'text-6xl sm:text-7xl' },
+    ],
+  },
+  leon: {
+    world: '/img/mckoth-card.jpg',
+    game: 'Minecraft KOTH',
+    user: '@diego',
+    spawnLabel: 'BOSS',
+    spawnName: 'Wither',
+    mobs: [{ emoji: '☠️', x: '50%', delay: '0.68s', size: 'text-8xl sm:text-9xl' }],
+  },
+  tiktok: {
+    world: '/img/mcshooter-card.png',
+    game: 'Minecraft Shooters',
+    user: '@vale',
+    spawnLabel: 'TNT',
+    spawnName: 'Explosión',
+    mobs: [
+      { emoji: '💣', x: '38%', delay: '0.62s', size: 'text-6xl sm:text-7xl' },
+      { emoji: '💥', x: '55%', delay: '0.78s', size: 'text-8xl sm:text-9xl' },
+    ],
+  },
+} as const;
 
-  function pick(id: (typeof giftReactions)[number]['id']) {
+type GiftId = keyof typeof scenes;
+
+export function GiftDemo() {
+  const [activeId, setActiveId] = useState<GiftId>('leon');
+  const [burst, setBurst] = useState(0);
+  const userTouched = useRef(false);
+  const active = giftReactions.find((g) => g.id === activeId) ?? giftReactions[1];
+  const scene = scenes[activeId];
+
+  function play(id: GiftId) {
     setActiveId(id);
     setBurst((n) => n + 1);
   }
+
+  useEffect(() => {
+    const order: GiftId[] = ['rosa', 'leon', 'tiktok'];
+    const timer = window.setInterval(() => {
+      if (userTouched.current) return;
+      setActiveId((current) => order[(order.indexOf(current) + 1) % order.length]);
+      setBurst((n) => n + 1);
+    }, 4800);
+    return () => window.clearInterval(timer);
+  }, []);
 
   return (
     <section id="demo" className="section-pad relative overflow-hidden scroll-mt-24">
@@ -35,13 +72,13 @@ export function GiftDemo() {
       <div className="relative mx-auto max-w-6xl">
         <div className="text-center mb-10">
           <span className="text-live-gold font-display text-sm font-semibold uppercase tracking-[0.2em]">
-            Pruébalo aquí
+            Así se ve en el LIVE
           </span>
           <h2 className="section-title mt-3">
-            Toca un <span className="text-live-gold">regalo</span>
+            Un regalo. Un <span className="text-live-gold">spawn</span>.
           </h2>
           <p className="section-sub mx-auto">
-            Así reacciona un LIVE con Livecoins. En la app pasa en tiempo real, con tu TikTok conectado.
+            Toca Rosa, León o TikTok. El regalo entra al juego y aparece el mob. Eso es Livecoins.
           </p>
         </div>
 
@@ -50,7 +87,10 @@ export function GiftDemo() {
             <button
               key={gift.id}
               type="button"
-              onClick={() => pick(gift.id)}
+              onClick={() => {
+                userTouched.current = true;
+                play(gift.id);
+              }}
               className={`rounded-2xl border px-5 py-3.5 text-left transition-all duration-200 min-w-[9.5rem] ${
                 activeId === gift.id
                   ? btnActive[gift.accent]
@@ -63,25 +103,50 @@ export function GiftDemo() {
           ))}
         </div>
 
-        <div className="relative mx-auto max-w-3xl">
+        <div className="relative mx-auto max-w-4xl">
           <div className="absolute -inset-1 rounded-3xl bg-gradient-to-r from-live-cyan/25 via-live-gold/20 to-live-pink/25 blur-md" />
-          <div className="relative glass-card overflow-hidden rounded-3xl p-2 sm:p-3">
-            <div className="relative overflow-hidden rounded-2xl border border-live-border/40">
+          <div className="relative overflow-hidden rounded-3xl border border-white/10 bg-black shadow-2xl">
+            <div key={burst} className="demo-stage demo-shake">
               <img
-                src={asset(screenshots.acciones)}
-                alt="Acción disparada por un regalo en Livecoins"
-                className="w-full h-auto min-h-[220px] object-cover"
+                src={gameImageUrl(scene.world)}
+                alt=""
+                className="demo-world"
               />
-              <div
-                key={burst}
-                className={`pointer-events-none absolute inset-0 bg-gradient-to-t ${flashClass[active.accent]} animate-gift-flash`}
-              />
-              <div className="absolute inset-x-0 bottom-0 p-4 sm:p-6 bg-gradient-to-t from-black/85 via-black/50 to-transparent">
-                <p className="text-xs font-display uppercase tracking-[0.18em] text-white/55">El chat acaba de enviar</p>
-                <p className="mt-1 font-display text-2xl sm:text-3xl font-black">
-                  {active.emoji} {active.result}
-                </p>
-                <p className="mt-1 text-sm text-white/70">{active.detail}</p>
+              <div className="demo-impact" />
+
+              <div className="demo-hud">
+                <span className="demo-live">
+                  <span className="demo-live-dot" />
+                  LIVE
+                </span>
+                <span className="demo-hud-game">{scene.game}</span>
+              </div>
+
+              <div className="demo-gift-fly" aria-hidden="true">
+                {active.emoji}
+              </div>
+
+              {scene.mobs.map((mob, i) => (
+                <span
+                  key={`${burst}-${i}`}
+                  className={`demo-spawn ${mob.size}`}
+                  style={{ left: mob.x, animationDelay: mob.delay }}
+                  aria-hidden="true"
+                >
+                  {mob.emoji}
+                </span>
+              ))}
+
+              <div className="demo-combo">
+                <span className="demo-combo-user">{scene.user}</span>
+                <span className="demo-combo-gift">
+                  {active.emoji} {active.name} ×1
+                </span>
+              </div>
+
+              <div className="demo-spawn-tag">
+                <span className="demo-spawn-k">{scene.spawnLabel}</span>
+                <span className="demo-spawn-v">{scene.spawnName}</span>
               </div>
             </div>
           </div>

@@ -8,14 +8,13 @@ export function DownloadSection() {
         <div className="grid lg:grid-cols-2 gap-10 lg:gap-14 items-center">
           <div>
             <span className="text-live-gold font-display text-sm font-semibold uppercase tracking-[0.2em]">
-              Descarga oficial
+              Llévalo a tu PC
             </span>
             <h2 className="section-title mt-3">
-              App PC <span className="neon-text">v{APP_VERSION}</span>
+              Instala Livecoins <span className="neon-text">v{APP_VERSION}</span>
             </h2>
             <p className="section-sub">
-              El instalador incluye el panel completo, pestañas de Juegos, Overlays, Webhook y ejecución local de
-              minijuegos. Solo Windows.
+              El instalador trae el panel, los juegos locales y el relay a la nube. Windows 10/11. Luego conectas TikTok y listo.
             </p>
 
             <div className="mt-8 flex flex-wrap gap-4">

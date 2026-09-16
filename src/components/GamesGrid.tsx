@@ -10,7 +10,7 @@ export function GamesGrid() {
             Tu chat <span className="neon-text">juega contigo</span>
           </h2>
           <p className="section-sub mx-auto">
-            Los mismos títulos que en la app Livecoins. Cada regalo puede spawnear enemigos, dar items o ejecutar comandos en vivo.
+            Minecraft, Mario, PvZ, GTA V, Roblox y más. El mismo catálogo de la app: un regalo entra, el juego responde.
           </p>
         </div>
 
@@ -47,6 +47,7 @@ export function GamesGrid() {
                   height={840}
                 />
               )}
+              <span className="juego-name">{game.name}</span>
             </article>
           ))}
         </div>

@@ -6,7 +6,7 @@ export function TutorialSection() {
   const [playing, setPlaying] = useState(false);
 
   return (
-    <section id="tutorial" className="section-pad pt-0">
+    <section id="tutorial" className="section-pad">
       <div className="mx-auto max-w-4xl">
         <div className="text-center mb-10">
           <span className="text-live-cyan font-display text-sm font-semibold uppercase tracking-[0.2em]">

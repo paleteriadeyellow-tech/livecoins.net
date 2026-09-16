@@ -33,6 +33,8 @@ export default {
         float: 'float 6s ease-in-out infinite',
         shimmer: 'shimmer 2.5s linear infinite',
         'slide-up': 'slideUp 0.6s ease-out forwards',
+        'gift-flash': 'giftFlash 0.7s ease-out forwards',
+        'hero-zoom': 'heroZoom 18s ease-in-out alternate infinite',
       },
       keyframes: {
         pulseGlow: {
@@ -50,6 +52,14 @@ export default {
         slideUp: {
           '0%': { opacity: '0', transform: 'translateY(24px)' },
           '100%': { opacity: '1', transform: 'translateY(0)' },
+        },
+        giftFlash: {
+          '0%': { opacity: '0.9' },
+          '100%': { opacity: '0' },
+        },
+        heroZoom: {
+          '0%': { transform: 'scale(1.08)' },
+          '100%': { transform: 'scale(1.14)' },
         },
       },
     },

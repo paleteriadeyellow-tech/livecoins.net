@@ -1,4 +1,6 @@
-import { APP_VERSION, DOWNLOAD_URL, screenshots, stats, whatsappBuyUrl } from '../data/content';
+import { useEffect, useState } from 'react';
+import { ChevronDown } from 'lucide-react';
+import { DOWNLOAD_URL, HERO_VIDEO, publicAsset, screenshots } from '../data/content';
 
 function asset(path: string) {
   const base = import.meta.env.BASE_URL || '/';
@@ -6,73 +8,84 @@ function asset(path: string) {
 }
 
 export function Hero() {
+  const [reduceMotion, setReduceMotion] = useState(false);
+
+  useEffect(() => {
+    const mq = window.matchMedia('(prefers-reduced-motion: reduce)');
+    setReduceMotion(mq.matches);
+    const onChange = () => setReduceMotion(mq.matches);
+    mq.addEventListener('change', onChange);
+    return () => mq.removeEventListener('change', onChange);
+  }, []);
+
   return (
-    <section id="inicio" className="relative min-h-screen flex items-center section-pad pt-32 overflow-hidden">
-      <div className="absolute top-1/4 -left-32 h-96 w-96 rounded-full bg-live-cyan/10 blur-[120px] animate-pulse-glow" />
-      <div className="absolute bottom-1/4 -right-32 h-96 w-96 rounded-full bg-live-pink/10 blur-[120px] animate-pulse-glow" />
+    <section id="inicio" className="relative min-h-[100svh] flex items-end sm:items-center overflow-hidden">
+      {!reduceMotion && (
+        <video
+          className="absolute inset-0 h-full w-full object-cover scale-105 animate-hero-zoom"
+          src={publicAsset(`video/${HERO_VIDEO}`)}
+          poster={asset(screenshots.panel)}
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="metadata"
+          aria-hidden="true"
+        />
+      )}
+      {reduceMotion && (
+        <img
+          src={asset(screenshots.panel)}
+          alt=""
+          className="absolute inset-0 h-full w-full object-cover"
+        />
+      )}
 
-      <div className="relative mx-auto max-w-7xl w-full">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-          <div className="animate-slide-up">
-            <div className="inline-flex items-center gap-2 rounded-full border border-live-cyan/30 bg-live-cyan/5 px-4 py-1.5 text-sm font-semibold text-live-cyan mb-6">
-              <span className="h-2 w-2 rounded-full bg-live-cyan animate-pulse" />
-              TikTok LIVE · v{APP_VERSION} · Windows
-            </div>
+      <div className="absolute inset-0 bg-gradient-to-t from-live-bg via-live-bg/75 to-black/35" />
+      <div className="absolute inset-0 bg-gradient-to-r from-live-bg/90 via-live-bg/40 to-transparent" />
+      <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-live-bg to-transparent" />
 
-            <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-black leading-[1.1] tracking-wide">
-              Convierte cada{' '}
-              <span className="neon-text">regalo</span>
-              <br />
-              en una{' '}
-              <span className="text-live-gold">acción épica</span>
-            </h1>
+      <div className="relative z-10 mx-auto w-full max-w-7xl section-pad pt-28 pb-20 sm:pt-32">
+        <div className="inline-flex items-center gap-2 rounded-full border border-live-pink/40 bg-live-pink/15 px-4 py-1.5 text-sm font-semibold text-white mb-6 shadow-glow-pink">
+          <span className="relative flex h-2.5 w-2.5">
+            <span className="absolute inset-0 rounded-full bg-live-pink animate-ping opacity-75" />
+            <span className="relative rounded-full h-2.5 w-2.5 bg-live-pink" />
+          </span>
+          LIVE · El chat controla el juego
+        </div>
 
-            <p className="mt-6 text-lg sm:text-xl text-white/65 max-w-xl leading-relaxed">
-              Livecoins conecta tu TikTok LIVE con minijuegos, overlays para OBS y alertas que hacen que tu audiencia
-              <strong className="text-white"> quiera quedarse y donar más</strong>.
-            </p>
+        <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl xl:text-[4.4rem] font-black leading-[1.08] tracking-wide max-w-4xl">
+          Tu chat tira un <span className="text-live-gold">León</span>.
+          <br />
+          En tu juego aparece un <span className="neon-text">boss</span>.
+        </h1>
 
-            <div className="mt-10 flex flex-wrap gap-4">
-              <a href={DOWNLOAD_URL} className="btn-glow text-base px-8 py-4 !from-live-gold !to-live-gold-dark !text-[#2a1c00] hover:!shadow-glow-gold">
-                ⬇ Descargar App PC
-              </a>
-              <a href={whatsappBuyUrl()} target="_blank" rel="noopener noreferrer" className="btn-outline text-base px-8 py-4">
-                Comprar Premium
-              </a>
-            </div>
+        <p className="mt-6 text-lg sm:text-xl text-white/75 max-w-xl leading-relaxed">
+          Livecoins convierte cada regalo de TikTok en spawns, jefes, overlays y alertas.
+          El LIVE deja de ser un chat. Se vuelve un show.
+        </p>
 
-            <div className="mt-12 grid grid-cols-2 sm:grid-cols-4 gap-4">
-              {stats.map((s) => (
-                <div key={s.label} className="glass-card p-4 text-center">
-                  <div className="font-display text-2xl sm:text-3xl font-bold text-live-cyan">{s.value}</div>
-                  <div className="mt-1 text-xs sm:text-sm text-white/50 uppercase tracking-wide">{s.label}</div>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          <div className="relative animate-float">
-            <div className="absolute -inset-4 rounded-3xl bg-gradient-to-r from-live-cyan/20 to-live-pink/20 blur-2xl" />
-            <div className="relative glass-card p-1.5 rounded-2xl shadow-glow scanline">
-              <img
-                src={asset(screenshots.login)}
-                alt="Panel Livecoins — pestaña Juegos con minijuegos"
-                className="rounded-xl w-full h-auto border border-live-border/30"
-              />
-            </div>
-
-            <div className="absolute -bottom-6 -left-4 sm:-left-6 glass-card px-4 py-3 shadow-glow hidden sm:block">
-              <div className="text-xs text-white/50 uppercase">Overlays OBS</div>
-              <div className="font-display text-live-cyan font-bold text-sm">En la App PC</div>
-            </div>
-
-            <div className="absolute -top-4 -right-4 glass-card px-4 py-3 shadow-glow-gold">
-              <div className="text-xs text-white/50 uppercase">Versión</div>
-              <div className="font-display text-live-gold font-bold text-xl">v{APP_VERSION}</div>
-            </div>
-          </div>
+        <div className="mt-10 flex flex-wrap gap-4">
+          <a
+            href={DOWNLOAD_URL}
+            className="btn-glow text-base px-8 py-4 !from-live-gold !to-live-gold-dark !text-[#2a1c00] hover:!shadow-glow-gold"
+          >
+            Descargar App PC
+          </a>
+          <a href="#demo" className="btn-outline text-base px-8 py-4 bg-black/30 backdrop-blur-sm">
+            Toca un regalo
+          </a>
         </div>
       </div>
+
+      <a
+        href="#demo"
+        className="absolute bottom-6 left-1/2 z-10 -translate-x-1/2 flex flex-col items-center gap-1 text-white/45 hover:text-live-cyan transition-colors"
+        aria-label="Ver la demo"
+      >
+        <span className="text-[11px] font-display uppercase tracking-[0.2em]">Ver más</span>
+        <ChevronDown size={22} className="animate-bounce" />
+      </a>
     </section>
   );
 }

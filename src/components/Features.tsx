@@ -5,9 +5,9 @@ export function Features() {
     <section className="section-pad">
       <div className="mx-auto max-w-7xl">
         <div className="text-center mb-14">
-          <span className="text-live-cyan font-display text-sm font-semibold uppercase tracking-[0.2em]">Funciones</span>
+          <span className="text-live-cyan font-display text-sm font-semibold uppercase tracking-[0.2em]">Por qué engancha</span>
           <h2 className="section-title mt-3">
-            Todo lo que necesitas para <span className="neon-text">crecer</span>
+            El chat no mira. <span className="neon-text">Juega</span>
           </h2>
         </div>
 

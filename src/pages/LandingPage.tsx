@@ -1,10 +1,11 @@
 import { Header } from '../components/Header';
 import { Hero } from '../components/Hero';
-import { DownloadSection } from '../components/DownloadSection';
-import { TutorialSection } from '../components/TutorialSection';
-import { AppShowcase } from '../components/AppShowcase';
+import { GiftDemo } from '../components/GiftDemo';
 import { GamesGrid } from '../components/GamesGrid';
+import { AppShowcase } from '../components/AppShowcase';
 import { Features } from '../components/Features';
+import { TutorialSection } from '../components/TutorialSection';
+import { DownloadSection } from '../components/DownloadSection';
 import { Pricing } from '../components/Pricing';
 import { CtaBanner } from '../components/CtaBanner';
 import { Footer } from '../components/Footer';
@@ -15,11 +16,12 @@ export function LandingPage() {
       <Header />
       <main>
         <Hero />
-        <DownloadSection />
-        <TutorialSection />
-        <AppShowcase />
+        <GiftDemo />
         <GamesGrid />
+        <AppShowcase />
         <Features />
+        <TutorialSection />
+        <DownloadSection />
         <Pricing />
         <CtaBanner />
       </main>

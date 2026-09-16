@@ -49,6 +49,35 @@ export const stats = [
   { value: '3:4', label: 'Formato TikTok LIVE' },
 ];
 
+export const HERO_VIDEO = 'Kitty x3.webm';
+
+export const giftReactions = [
+  {
+    id: 'rosa',
+    emoji: '🌹',
+    name: 'Rosa',
+    result: 'Spawn de enemigos en el mapa',
+    detail: 'El chat tira una rosa y el juego se llena de acción.',
+    accent: 'cyan',
+  },
+  {
+    id: 'leon',
+    emoji: '🦁',
+    name: 'León',
+    result: 'Aparece un boss en tu LIVE',
+    detail: 'Un León no es un like. Es un evento que se ve y se siente.',
+    accent: 'gold',
+  },
+  {
+    id: 'tiktok',
+    emoji: '🎵',
+    name: 'TikTok',
+    result: 'Alerta + overlay en OBS',
+    detail: 'El regalo dispara sonido, video y el overlay 3:4 al mismo tiempo.',
+    accent: 'pink',
+  },
+] as const;
+
 export const features = [
   {
     icon: '🎮',

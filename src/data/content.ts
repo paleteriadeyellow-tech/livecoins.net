@@ -5,6 +5,8 @@ export const DOWNLOAD_URL =
   'https://github.com/paleteriadeyellow-tech/exe/releases/download/world/Livecoins.Setup.1.6.68.exe';
 export const DOWNLOAD_SIZE = '~943 MB';
 export const RELEASES_URL = 'https://github.com/paleteriadeyellow-tech/exe/releases';
+export const AGENCY_APPLY_URL =
+  'https://www.tiktok.com/tcn/scout_creators?use_spark=1&__live_platform__=webcast&hide_nav_bar=1&web_fit_status_bar=1&agency_scout_source=qr_code_leads&ShareLinkID=7373591056006957829';
 
 export const TUTORIAL_VIDEO_ID = 'YBLo2J0khbo';
 export const TUTORIAL_VIDEO_START = 15;
@@ -204,6 +206,15 @@ export const planPremium = [
   'Perfiles ilimitados',
   'App PC con todos los juegos',
   'Soporte prioritario por WhatsApp',
+];
+
+export const planAgency = [
+  'Todo el Plan Premium incluido',
+  '$0 mientras pertenezcas a la agencia',
+  'Soporte 1 a 1 para tu LIVE',
+  'Entrenamiento de habilidades LIVE',
+  'Oportunidades para crecer en TikTok',
+  'Activación de Livecoins sin pago mensual',
 ];
 
 export const downloadSteps = [

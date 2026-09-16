@@ -1,23 +1,33 @@
-import { APP_VERSION, DOWNLOAD_URL, planFree, planPremium, PREMIUM_PRICE, whatsappBuyUrl } from '../data/content';
-import { Download } from 'lucide-react';
+import {
+  AGENCY_APPLY_URL,
+  APP_VERSION,
+  DOWNLOAD_URL,
+  planAgency,
+  planFree,
+  planPremium,
+  PREMIUM_PRICE,
+  whatsappBuyUrl,
+} from '../data/content';
+import { Download, ExternalLink } from 'lucide-react';
 
 export function Pricing() {
   return (
     <section id="planes" className="section-pad relative overflow-hidden">
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-[500px] w-[500px] rounded-full bg-live-gold/5 blur-[100px]" />
 
-      <div className="relative mx-auto max-w-5xl">
+      <div className="relative mx-auto max-w-6xl">
         <div className="text-center mb-14">
           <span className="text-live-gold font-display text-sm font-semibold uppercase tracking-[0.2em]">Planes</span>
           <h2 className="section-title mt-3">
             Empieza gratis, <span className="neon-text">escala a Premium</span>
           </h2>
           <p className="section-sub mx-auto">
-            Descarga la app gratis. Premium desbloquea todo por {PREMIUM_PRICE}/mes.
+            Descarga la app gratis. Premium desbloquea todo por {PREMIUM_PRICE}/mes. En la agencia,
+            Livecoins queda en $0 mientras estés dentro.
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-6 lg:gap-8">
+        <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-6 lg:gap-7">
           <div className="glass-card p-8 flex flex-col">
             <div className="text-sm font-display uppercase tracking-widest text-white/40">Plan Gratis</div>
             <div className="mt-4 font-display text-5xl font-black">
@@ -67,6 +77,41 @@ export function Pricing() {
             </a>
             <p className="text-xs text-center text-white/35 mt-4">
               Te activamos el plan manualmente. Luego cierra sesión e inicia de nuevo.
+            </p>
+          </div>
+
+          <div className="relative glass-card p-8 flex flex-col border-live-cyan/35 shadow-glow md:col-span-2 xl:col-span-1">
+            <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full bg-live-cyan text-[#04121a] text-xs font-display font-bold uppercase tracking-wider">
+              Agencia
+            </div>
+            <div className="text-sm font-display uppercase tracking-widest text-live-cyan">Plan Agencia</div>
+            <div className="mt-4 font-display text-5xl font-black text-live-cyan">
+              $0
+              <span className="text-lg font-normal text-white/40"> / en la agencia</span>
+            </div>
+            <p className="mt-3 text-white/55">
+              Premium a $0 pesos durante toda tu estancia en la agencia. Aplica y entra a la red de creadores.
+            </p>
+            <ul className="mt-8 space-y-3 flex-1">
+              {planAgency.map((item) => (
+                <li key={item} className="flex items-start gap-2 text-sm text-white/80">
+                  <span className="text-live-cyan mt-0.5">★</span>
+                  {item}
+                </li>
+              ))}
+            </ul>
+            <a
+              href={AGENCY_APPLY_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-glow mt-8 w-full justify-center"
+            >
+              Aplicar
+              <ExternalLink size={16} />
+            </a>
+            <p className="text-xs text-center text-white/35 mt-4">
+              Te llevan al formulario de StreamersFederation en TikTok. Si te aceptan, Livecoins queda en $0
+              mientras sigas en la agencia.
             </p>
           </div>
         </div>

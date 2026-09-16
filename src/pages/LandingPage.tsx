@@ -1,6 +1,5 @@
 import { Header } from '../components/Header';
 import { Hero } from '../components/Hero';
-import { GiftDemo } from '../components/GiftDemo';
 import { GamesGrid } from '../components/GamesGrid';
 import { AppShowcase } from '../components/AppShowcase';
 import { Features } from '../components/Features';
@@ -16,14 +15,13 @@ export function LandingPage() {
       <Header />
       <main>
         <Hero />
-        <GiftDemo />
+        <DownloadSection />
+        <Features />
+        <CtaBanner />
         <GamesGrid />
         <AppShowcase />
-        <Features />
         <TutorialSection />
-        <DownloadSection />
         <Pricing />
-        <CtaBanner />
       </main>
       <Footer />
     </>

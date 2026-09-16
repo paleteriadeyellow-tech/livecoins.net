@@ -5,8 +5,8 @@ import { Logo } from './Logo';
 
 const links = [
   { href: '#inicio', label: 'Inicio' },
-  { href: '#demo', label: 'Demo' },
   { href: '#juegos', label: 'Juegos' },
+  { href: '#descargar', label: 'Instalar' },
   { href: '#app', label: 'App' },
   { href: '#planes', label: 'Planes' },
 ];

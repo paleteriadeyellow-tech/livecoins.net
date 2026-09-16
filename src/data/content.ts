@@ -158,6 +158,19 @@ export const games: GameItem[] = [
   { id: 'gdash', name: 'Geometry Dash', img: '/img/gdash/gdash-card.jpg', webp: '/img/gdash/gdash-card.webp', premium: true },
 ];
 
+export const featuredGameIds = [
+  'pvzfusion',
+  'gtavchaos',
+  'repo',
+  'l4d',
+  'ctr',
+  'minecraft',
+  'mk64',
+  'flappy',
+  'mari0',
+  'gdash',
+] as const;
+
 export function publicAsset(path: string) {
   const base = import.meta.env.BASE_URL.replace(/\/$/, '');
   const clean = path.replace(/^\//, '');

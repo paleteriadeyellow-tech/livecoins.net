@@ -8,29 +8,33 @@ const btnActive: Record<(typeof giftReactions)[number]['accent'], string> = {
 };
 
 const scenes = {
-  rosa: {
-    world: '/img/mcparkour-card.jpg',
-    game: 'Minecraft Parkour',
+  mari0: {
+    world: '/img/mari0-card.png',
+    game: 'Mari0',
     user: '@luna',
     spawnLabel: 'SPAWN ×3',
-    spawnName: 'Creepers',
+    spawnName: 'Goombas',
     mobs: [
-      { emoji: '🧟', x: '18%', delay: '0.62s', size: 'text-6xl sm:text-7xl' },
-      { emoji: '🧟', x: '42%', delay: '0.74s', size: 'text-7xl sm:text-8xl' },
-      { emoji: '🧟', x: '66%', delay: '0.86s', size: 'text-6xl sm:text-7xl' },
+      { emoji: '👾', x: '18%', delay: '0.62s', size: 'text-6xl sm:text-7xl' },
+      { emoji: '🐢', x: '42%', delay: '0.74s', size: 'text-7xl sm:text-8xl' },
+      { emoji: '👾', x: '66%', delay: '0.86s', size: 'text-6xl sm:text-7xl' },
     ],
   },
-  leon: {
-    world: '/img/mckoth-card.jpg',
-    game: 'Minecraft KOTH',
+  mslug: {
+    world: '/img/metalslug.png',
+    game: 'Metal Slug',
     user: '@diego',
-    spawnLabel: 'BOSS',
-    spawnName: 'Wither',
-    mobs: [{ emoji: '☠️', x: '50%', delay: '0.68s', size: 'text-8xl sm:text-9xl' }],
+    spawnLabel: 'OLEADA',
+    spawnName: 'Soldados',
+    mobs: [
+      { emoji: '🪖', x: '28%', delay: '0.62s', size: 'text-6xl sm:text-7xl' },
+      { emoji: '💥', x: '50%', delay: '0.74s', size: 'text-7xl sm:text-8xl' },
+      { emoji: '🪖', x: '68%', delay: '0.86s', size: 'text-6xl sm:text-7xl' },
+    ],
   },
-  tiktok: {
-    world: '/img/mcshooter-card.png',
-    game: 'Minecraft Shooters',
+  cubo: {
+    world: '/img/bedrock-card.jpg',
+    game: 'Cubo TNT · Bedrock',
     user: '@vale',
     spawnLabel: 'TNT',
     spawnName: 'Explosión',
@@ -44,10 +48,10 @@ const scenes = {
 type GiftId = keyof typeof scenes;
 
 export function GiftDemo() {
-  const [activeId, setActiveId] = useState<GiftId>('leon');
+  const [activeId, setActiveId] = useState<GiftId>('mari0');
   const [burst, setBurst] = useState(0);
   const userTouched = useRef(false);
-  const active = giftReactions.find((g) => g.id === activeId) ?? giftReactions[1];
+  const active = giftReactions.find((g) => g.id === activeId) ?? giftReactions[0];
   const scene = scenes[activeId];
 
   function play(id: GiftId) {
@@ -56,7 +60,7 @@ export function GiftDemo() {
   }
 
   useEffect(() => {
-    const order: GiftId[] = ['rosa', 'leon', 'tiktok'];
+    const order: GiftId[] = ['mari0', 'mslug', 'cubo'];
     const timer = window.setInterval(() => {
       if (userTouched.current) return;
       setActiveId((current) => order[(order.indexOf(current) + 1) % order.length]);
@@ -78,7 +82,8 @@ export function GiftDemo() {
             Un regalo. Un <span className="text-live-gold">spawn</span>.
           </h2>
           <p className="section-sub mx-auto">
-            Toca Rosa, León o TikTok. El regalo entra al juego y aparece el mob. Eso es Livecoins.
+            Toca Mari0, Metal Slug o Cubo TNT. El regalo entra al juego y aparece el spawn. Eso es
+            Livecoins.
           </p>
         </div>
 

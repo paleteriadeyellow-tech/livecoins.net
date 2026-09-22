@@ -30,10 +30,10 @@ export function Features() {
       <div className="relative mx-auto max-w-6xl">
         <div className="text-center mb-12">
           <h2 className="section-title">
-            Características <span className="text-live-gold">destacadas</span>
+            Cómo <span className="text-live-gold">funciona</span>
           </h2>
           <p className="section-sub mx-auto">
-            Por eso los streamers usan Livecoins: el chat juega, dona y se queda.
+            Overlays, alertas y minijuegos conectados al chat. El directo se siente distinto.
           </p>
         </div>
 

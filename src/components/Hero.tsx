@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { ArrowRight, Download } from 'lucide-react';
+import { ArrowRight, Download, Play } from 'lucide-react';
 import { APP_VERSION, DOWNLOAD_URL, HERO_VIDEO, publicAsset, screenshots } from '../data/content';
 
 function asset(path: string) {
@@ -27,13 +27,16 @@ export function Hero() {
       <div className="relative z-10 mx-auto w-full max-w-7xl section-pad pt-28 pb-16 sm:pt-32">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           <div>
-            <h1 className="font-display text-5xl sm:text-6xl lg:text-[4.35rem] font-black leading-[1.05] tracking-tight">
-              Juega. Enciende.
+            <p className="font-display text-sm font-semibold uppercase tracking-[0.22em] text-live-cyan">
+              Livecoins
+            </p>
+            <h1 className="mt-4 font-display text-4xl sm:text-5xl lg:text-[3.6rem] font-black leading-[1.08] tracking-tight">
+              Los regalos de TikTok
               <br />
-              <span className="text-live-gold">Domina.</span>
+              <span className="text-live-gold">controlan el juego</span>
             </h1>
             <p className="mt-6 text-lg sm:text-xl text-white/65 max-w-lg leading-relaxed">
-              Livecoins convierte cada regalo de TikTok LIVE en spawns, overlays y alertas.
+              Cada rosa, león o regalo dispara spawns, overlays y alertas en tu LIVE.
               El chat deja de mirar. Empieza a jugar.
             </p>
 
@@ -46,14 +49,19 @@ export function Hero() {
                 Descargar v{APP_VERSION}
                 <ArrowRight size={16} />
               </a>
-              <a href="#juegos" className="btn-outline text-sm px-6 py-3.5">
-                Ver juegos
+              <a href="#demo" className="btn-outline text-sm px-6 py-3.5">
+                <Play size={16} />
+                Ver demo
               </a>
             </div>
 
-            <p className="mt-6 text-sm text-white/40">
-              28 minijuegos · 40+ overlays · Windows 10/11
-            </p>
+            <div className="mt-8 flex flex-wrap gap-x-5 gap-y-2 text-sm text-white/40">
+              <span>28 minijuegos</span>
+              <span className="text-white/20">·</span>
+              <span>40+ overlays</span>
+              <span className="text-white/20">·</span>
+              <span>Windows 10/11</span>
+            </div>
           </div>
 
           <div className="relative">

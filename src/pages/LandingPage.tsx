@@ -8,13 +8,14 @@ import { TutorialSection } from '../components/TutorialSection';
 import { Pricing } from '../components/Pricing';
 import { DownloadSection } from '../components/DownloadSection';
 import { CtaBanner } from '../components/CtaBanner';
+import { StickyDownload } from '../components/StickyDownload';
 import { Footer } from '../components/Footer';
 
 export function LandingPage() {
   return (
     <>
       <Header />
-      <main>
+      <main className="pb-20 md:pb-0">
         <Hero />
         <GiftDemo />
         <GamesGrid />
@@ -25,6 +26,7 @@ export function LandingPage() {
         <DownloadSection />
         <CtaBanner />
       </main>
+      <StickyDownload />
       <Footer />
     </>
   );

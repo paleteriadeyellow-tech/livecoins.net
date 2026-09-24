@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
-import { gameImageUrl, giftReactions } from '../data/content';
+import { Download } from 'lucide-react';
+import { DOWNLOAD_URL, gameImageUrl, giftReactions } from '../data/content';
 
 const btnActive: Record<(typeof giftReactions)[number]['accent'], string> = {
   cyan: 'border-live-cyan bg-live-cyan/15 shadow-glow',
@@ -168,6 +169,19 @@ export function GiftDemo() {
               <div className="mt-1 text-sm text-white/55">{item.v}</div>
             </div>
           ))}
+        </div>
+
+        <div className="mt-10 flex flex-col items-center gap-3 text-center">
+          <p className="text-white/55 text-sm sm:text-base">
+            ¿Quieres esto en tu próximo LIVE? Descarga Livecoins gratis.
+          </p>
+          <a
+            href={DOWNLOAD_URL}
+            className="btn-glow !from-live-gold !to-live-gold-dark !text-[#2a1c00] hover:!shadow-glow-gold"
+          >
+            <Download size={18} />
+            Descargar la app
+          </a>
         </div>
       </div>
     </section>

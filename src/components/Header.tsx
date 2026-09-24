@@ -45,12 +45,20 @@ export function Header() {
         </nav>
 
         <div className="hidden items-center gap-3 md:flex">
-          <a href={DOWNLOAD_URL} className="btn-outline text-xs py-2.5 px-4 gap-1.5">
+          <a
+            href={whatsappBuyUrl()}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn-outline text-xs py-2.5 px-4"
+          >
+            Premium
+          </a>
+          <a
+            href={DOWNLOAD_URL}
+            className="btn-glow text-xs py-2.5 px-5 !from-live-gold !to-live-gold-dark !text-[#2a1c00] hover:!shadow-glow-gold"
+          >
             <Download size={16} />
             Descargar
-          </a>
-          <a href={whatsappBuyUrl()} target="_blank" rel="noopener noreferrer" className="btn-glow text-xs py-2.5 px-5">
-            Premium ⭐
           </a>
         </div>
 
@@ -77,11 +85,14 @@ export function Header() {
                 {l.label}
               </a>
             ))}
-            <a href={DOWNLOAD_URL} className="btn-outline mt-2 justify-center gap-2">
+            <a
+              href={DOWNLOAD_URL}
+              className="btn-glow mt-2 justify-center !from-live-gold !to-live-gold-dark !text-[#2a1c00]"
+            >
               <Download size={18} />
               Descargar App
             </a>
-            <a href={whatsappBuyUrl()} target="_blank" rel="noopener noreferrer" className="btn-glow mt-2 justify-center">
+            <a href={whatsappBuyUrl()} target="_blank" rel="noopener noreferrer" className="btn-outline mt-2 justify-center">
               Comprar Premium
             </a>
           </nav>

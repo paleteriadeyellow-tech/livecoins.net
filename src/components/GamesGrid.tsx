@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { ChevronDown, ChevronUp } from 'lucide-react';
-import { featuredGameIds, gameImageUrl, games, PREMIUM_PRICE } from '../data/content';
+import { ChevronDown, ChevronUp, Download } from 'lucide-react';
+import { DOWNLOAD_URL, featuredGameIds, gameImageUrl, games, PREMIUM_PRICE } from '../data/content';
 
 function GameCard({
   game,
@@ -57,10 +57,10 @@ export function GamesGrid() {
       <div className="relative mx-auto max-w-6xl">
         <div className="text-center mb-5">
           <h2 className="section-title">
-            Nuestros <span className="text-live-gold">Juegos</span>
+            Juegos que <span className="text-live-gold">encienden</span> el chat
           </h2>
           <p className="mt-3 text-white/55 max-w-2xl mx-auto text-sm sm:text-base">
-            Cada regalo del chat puede spawnear enemigos, bosses o efectos. Premium desbloquea el
+            Mari0, Metal Slug, Cubo TNT, PvZ, GTA y más. Empieza gratis; Premium desbloquea el
             catálogo completo por {PREMIUM_PRICE}/mes.
           </p>
         </div>
@@ -71,7 +71,7 @@ export function GamesGrid() {
           ))}
         </div>
 
-        <div className="mt-8 flex justify-center">
+        <div className="mt-8 flex flex-wrap justify-center gap-3">
           <button
             type="button"
             onClick={() => setShowAll((v) => !v)}
@@ -89,6 +89,13 @@ export function GamesGrid() {
               </>
             )}
           </button>
+          <a
+            href={DOWNLOAD_URL}
+            className="btn-glow text-sm px-5 py-2.5 !from-live-gold !to-live-gold-dark !text-[#2a1c00]"
+          >
+            <Download size={16} />
+            Descargar y jugar
+          </a>
         </div>
       </div>
     </section>

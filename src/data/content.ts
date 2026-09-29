@@ -1,9 +1,9 @@
 export const WHATSAPP_NUMBER = '522202079074';
 export const PREMIUM_PRICE = '$17 USD';
-export const APP_VERSION = '1.6.84';
+export const APP_VERSION = '1.6.92';
 export const DOWNLOAD_URL =
-  'https://github.com/paleteriadeyellow-tech/exe/releases/download/world/Livecoins.Setup.1.6.84.exe';
-export const DOWNLOAD_SIZE = '~943 MB';
+  'https://github.com/paleteriadeyellow-tech/exe/releases/download/world/Livecoins.Setup.1.6.92.exe';
+export const DOWNLOAD_SIZE = '~613 MB';
 export const RELEASES_URL = 'https://github.com/paleteriadeyellow-tech/exe/releases';
 export const AGENCY_APPLY_URL =
   'https://www.tiktok.com/tcn/scout_creators?use_spark=1&__live_platform__=webcast&hide_nav_bar=1&web_fit_status_bar=1&agency_scout_source=qr_code_leads&ShareLinkID=7373591056006957829';
